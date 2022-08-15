@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 
 const useAccount = () => {
-  const [account, setAccount] = useState("");
+  const [account, setAccount] = useState(null);
 
   const getAccount = async () => {
-    console.log(window.ethereum);
     try {
       if (!window.ethereum) throw new Error("Error");
       const accounts = await window.ethereum.request({
@@ -20,7 +19,6 @@ const useAccount = () => {
   useEffect(() => {
     getAccount();
   }, []);
-  console.log(account);
   return { account };
 };
 
